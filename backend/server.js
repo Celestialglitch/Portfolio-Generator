@@ -4,7 +4,7 @@ const path = require("path");
 const { generatePortfolio, generatePDF } = require("./generate");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; 
 
 // Middleware
 app.use(express.json());
@@ -19,7 +19,7 @@ if (!fs.existsSync(generatedDir)) {
   fs.mkdirSync(generatedDir);
 }
 
-// ✅ Serve *any* generated portfolio file by name
+// Serve *any* generated portfolio file by name
 app.get("/portfolio/:filename", (req, res) => {
   const file = req.params.filename;
   const filePath = path.join(generatedDir, file);
