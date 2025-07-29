@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: transparent;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+canvas#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ========================== */
+/*       HERO SECTION         */
+/* ========================== */
+.hero-header {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.hero-header h1 {
+  font-size: 3rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffee;
+  letter-spacing: 2px;
+}
+
+.hero-header p {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  color: #ffffffcc;
+}
+
+
+/* ========================== */
+/*      SECTION WRAPPERS      */
+/* ========================== */
+
+.card-block {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 40px 32px;
+  margin: 80px auto;
+  max-width: 80%;
+  box-shadow: 0 0 12px rgba(0,255,255,0.15);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s ease;
+}
+
+.card-block:hover {
+  transform: scale(1.01);
+}
+
+.card-block h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  color: #00ffee;
+}
+
+
+/* ========================== */
+/*        TAG LAYOUT          */
+/* ========================== */
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px 44px;
+  padding: 20px 10px;
+}
+
+.tag {
+  padding: 16px 32px;
+  margin: 10px;
+  background: rgba(0, 255, 255, 0.12);
+  border: 1px solid #00ffff66;
+  border-radius: 24px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.25);
+  min-width: 140px;
+  text-align: center;
+}
+
+.tag:hover {
+  background: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 14px rgba(0,255,255,0.5);
+}
+
+.tag a {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+.tag a:hover {
+  text-decoration: underline;
+}
+
+
+/* ========================== */
+/*        CONTACT SECTION     */
+/* ========================== */
+
+.contact-section {
+  text-align: left;
+  padding: 40px 60px;
+  margin: 80px auto;
+  max-width: 900px;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  color: #00ffee;
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  color: #ffffffcc;
+}
+
+.contact-item a {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+
+/* ========================== */
+/*         BUTTON             */
+/* ========================== */
+
+button {
+  display: block;
+  background: #00ffee;
+  color: #000;
+  font-weight: bold;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  margin: 40px auto 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00cccc;
+}
+.site-footer {
+  background: #111;
+  padding: 20px 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1);
+  margin-top: 100px;
+  }

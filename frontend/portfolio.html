@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Your Portfolio</title>
+  <link rel="stylesheet" href="portfolio.css" />
+  <style>
+    input, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      margin-top: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #00ffff55;
+      border-radius: 10px;
+      color: #fff;
+      backdrop-filter: blur(4px);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00ffee;
+      box-shadow: 0 0 8px #00ffee88;
+    }
+
+    label {
+      font-weight: bold;
+      color: #00ffee;
+    }
+
+    .tag-full {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .project-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .project-group .tag {
+      flex: 1 1 48%;
+    }
+
+    @media (max-width: 600px) {
+      .project-group .tag {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <script src="bg-animation.js" defer></script>
+
+  <header class="hero-header">
+    <h1>Create Your Portfolio</h1>
+    <p>Craft your immersive, futuristic digital presence</p>
+  </header>
+
+  <div class="card-block">
+    <form id="portfolioForm">
+
+      <!-- Name and Title -->
+      <div class="tag-container">
+        <div class="tag-full">
+          <label for="name">Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="tag-full">
+          <label for="title">Title</label>
+          <input type="text" id="title" required />
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <div class="card-block">
+        <h2>About Me</h2>
+        <textarea id="about" rows="4" required placeholder="Write a short bio about yourself..."></textarea>
+      </div>
+
+      <!-- Skills -->
+      <div class="card-block">
+        <h2>Skills</h2>
+        <input type="text" id="skills" placeholder="e.g. JavaScript, Python, UI/UX, etc" required />
+      </div>
+
+      <!-- Projects -->
+      <div class="card-block">
+        <h2>Projects</h2>
+        <div id="projects">
+          <div class="project-group">
+            <div class="tag">
+              <label>Project Title</label>
+              <input type="text" class="project-title" placeholder="My App" required />
+            </div>
+            <div class="tag">
+              <label>Project Link</label>
+              <input type="url" class="project-link" placeholder="https://..." required />
+            </div>
+          </div>
+        </div>
+        <button type="button" id="addProject">+ Add Another Project</button>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="card-block">
+        <h2>Contact Info</h2>
+        <div class="tag-full">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="tag-full">
+          <label for="socials">Social Links</label>
+          <input type="text" id="socials" placeholder="Comma-separated URLs" required />
+        </div>
+      </div>
+
+      <button type="submit">Generate Portfolio</button>
+    </form>
+  </div>
+
+  <script src="script.js" defer></script>
+  <footer class="site-footer">
+  &copy; 2025 Ongkar Dasgupta. All rights reserved. 2025
+  </footer>
+  
+</body>
+</html>

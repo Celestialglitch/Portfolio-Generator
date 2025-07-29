@@ -1,0 +1,301 @@
+const fs = require("fs");
+const path = require("path");
+
+exports.generatePortfolio = async (req, res) => {
+  const data = req.body;
+  const filename = data.name.replace(/\s+/g, "_").toLowerCase() + ".html";
+  const outputPath = path.join(__dirname, "generated", filename);
+
+  // Read the raw animation JS from frontend file
+  const animationScriptPath = path.join(__dirname, "../frontend/bg-animation.js");
+  const animationScript = fs.existsSync(animationScriptPath)
+    ? fs.readFileSync(animationScriptPath, "utf8")
+    : "// bg-animation.js not found";
+
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>${data.name} - Portfolio</title>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      background: black;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    canvas#bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      padding: 100px 30px 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .welcome {
+      text-align: center;
+      font-size: 44px;
+      font-weight: bold;
+      color: #00f7ff;
+      margin-bottom: 120px;
+      letter-spacing: 3px;
+      text-shadow:
+       0 0 10px #00f7ff,
+       0 0 20px #00f7ff,
+       0 0 40px #00f7ff,
+       0 0 80px #00f7ff;
+      animation: twinkleText 3s infinite ease-in-out alternate;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    @keyframes twinkleText {
+    0% {
+      opacity: 1;
+      text-shadow:
+       0 0 10px #00f7ff,
+       0 0 20px #00f7ff,
+       0 0 40px #00f7ff,
+       0 0 80px #00f7ff;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      text-shadow:
+      0 0 5px #00f7ff,
+      0 0 10px #00f7ff,
+      0 0 20px #00f7ff,
+      0 0 40px #00f7ff;
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      text-shadow:
+      0 0 15px #00f7ff,
+      0 0 30px #00f7ff,
+      0 0 60px #00f7ff,
+      0 0 100px #00f7ff;
+      transform: scale(1);
+    }
+    }
+
+
+
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .header h1 {
+      position: relative;
+      font-size: 42px;
+      margin-bottom: 12px;
+      color: #ffffff;
+      text-shadow:
+       0 0 4px #ffffff,
+       0 0 10px #ffffff,
+       0 0 18px #cccccc;
+    }
+
+
+
+    .header h2 {
+      font-size: 24px;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    section {
+      margin: 80px 0;
+    }
+
+    h3.section-title {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 20px;
+      border-left: 5px solid #00ffff;
+      padding-left: 15px;
+    }
+
+    .about p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .skill-card {
+      background: #111;
+      border: 2px solid #00f7ff;
+      color: #fff;
+      padding: 20px;
+      width: 160px;
+      height: 100px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05);
+      background: #222;
+    }
+
+    .project-list a {
+      display: block;
+      color: #00eaff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .contact p, .contact a {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 6px;
+      word-wrap: break-word;
+    }
+
+    .contact a {
+      color: #00c9ff;
+     }
+    .navbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 40px;
+      background: rgba(0, 0, 0, 0.7); 
+      z-index: 1000;
+    }
+
+    .navbar ul {
+     list-style: none;
+     display: flex;
+     gap: 30px;
+     margin: 0;
+     padding: 0;
+    }
+
+    .navbar li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .navbar li a:hover {
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      padding: 120px 30px 80px; 
+    }
+    
+    .site-footer {
+      background: #111; 
+      padding: 20px 10px;
+      font-size: 14px;
+      text-align: center;
+      color: #ccc;
+      font-family: 'Segoe UI', sans-serif;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1);
+      margin-top: 100px;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+  <ul>
+    <li><a href="#top">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<canvas id="bgCanvas"></canvas>
+
+  <div class="container" id="top">
+    <div class="welcome">Welcome to My Portfolio</div>
+
+    <div class="header">
+      <h1>${data.name}</h1>
+      <h2>${data.title}</h2>
+    </div>
+
+    <section class="about" id="about">
+      <h3 class="section-title">About Me</h3>
+      <p>${data.about}</p>
+    </section>
+
+    <section class="skills" id="skills">
+      <h3 class="section-title">Skills</h3>
+      <div class="skills-wrapper">
+        ${data.skills.map(skill => `<div class="skill-card">${skill}</div>`).join("")}
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h3 class="section-title">Projects</h3>
+      <div class="project-list">
+        ${data.projects.map(p => `<a href="${p.link}" target="_blank">${p.title}</a>`).join("")}
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h3 class="section-title">Contact</h3>
+      <p>Email: ${data.email}</p>
+      ${data.socials.map(s => `<p><a href="${s}" target="_blank">${s}</a></p>`).join("")}
+    </section>
+  </div>
+
+  <script>
+    ${animationScript}
+  </script>
+  <footer class="site-footer">
+  &copy; 2025 Ongkar Dasgupta. All rights reserved. 2025
+  </footer>
+</body>
+</html>
+`;
+
+  fs.writeFileSync(outputPath, html, "utf8");
+  res.json({ success: true, page: filename });
+};

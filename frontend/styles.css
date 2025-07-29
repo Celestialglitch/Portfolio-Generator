@@ -1,0 +1,92 @@
+/* Reset and layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background: #0d0d0d;
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+}
+
+
+canvas#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: transparent;
+}
+
+
+
+/* Entry container styles */
+.entry-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.entry-container h1 {
+  font-size: 3rem;
+  color: #00ffee;
+  text-shadow: 0 0 10px #00ffee, 0 0 20px #0078ff;
+}
+
+.entry-container p {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.start-btn {
+  padding: 15px 30px;
+  background: linear-gradient(45deg, #00ffee, #0078ff);
+  color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 0 15px #00ffee;
+  transition: transform 0.3s;
+}
+
+.start-btn:hover {
+  transform: scale(1.1);
+}
+.portfolio-form {
+  position: relative;
+  background: rgba(10, 10, 10, 0.85); /* Add some opacity */
+  color: #fff;
+  padding: 40px;
+  max-width: 700px;
+  margin: 50px auto;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #00ffee;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.site-footer {
+  background: #111;
+  padding: 20px 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1);
+  margin-top: 100px;
+  }
+
